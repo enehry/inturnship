@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inturnship/providers/profile_provider.dart';
 import 'package:inturnship/widgets/dropdown_select.dart';
 import 'package:inturnship/widgets/form_input.dart';
 import 'package:inturnship/widgets/primary_button.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationForm extends StatefulWidget {
   const RegistrationForm({super.key});
@@ -28,7 +30,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
     'University of Rizal System Morong',
   ];
 
+  final List<String> _programs = [
+    'Bachelor of Science in Information Technology',
+    'Bachelor of Science in Information Systems',
+  ];
+
   String? _selectedUniversity;
+  String? _selectedProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +86,22 @@ class _RegistrationFormState extends State<RegistrationForm> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Your university is required';
+              }
+              return null;
+            },
+          ),
+          DropdownSelect<String>(
+            items: _programs,
+            selectedValue: _selectedProgram,
+            onChanged: (value) {
+              setState(() {
+                _selectedProgram = value;
+              });
+            },
+            hinText: 'Select your program',
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Your program is required';
               }
               return null;
             },
@@ -164,7 +188,22 @@ class _RegistrationFormState extends State<RegistrationForm> {
             child: PrimaryButton(
               textLabel: 'Continue',
               onPressed: () {
-                context.push('/onboarding/time-period');
+                if (_formKey.currentState!.validate()) {
+                  final profileProvider = context.read<ProfileProvider>();
+
+                  profileProvider.setProfileInfo(
+                    fullName: _textNameController.text,
+                    homeAddress: _textAddressController.text,
+                    schoolCampus: _selectedUniversity!,
+                    program: _selectedProgram!,
+                    yearSection: _textYearSectionController.text,
+                    adviser: _textAdviserController.text,
+                    name: _textHteNameController.text,
+                    address: _textHteAddressController.text,
+                    contactNumber: _textHteContactController.text,
+                  );
+                  context.push('/onboarding/time-period');
+                }
               },
               icon: const Icon(Icons.arrow_forward),
             ),

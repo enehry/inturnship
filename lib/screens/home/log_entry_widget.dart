@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:inturnship/models/log_entry.dart';
+import 'package:inturnship/utils/date_helper.dart';
 
 class LogEntryWidget extends StatelessWidget {
-  const LogEntryWidget({super.key});
+  const LogEntryWidget(
+      {super.key, required this.logEntry, required this.index});
+
+  final LogEntry logEntry;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Slidable(
-        key: key,
+        key: ValueKey(logEntry.id),
         endActionPane: ActionPane(
           extentRatio: 0.25,
           motion: const ScrollMotion(),
@@ -26,7 +32,7 @@ class LogEntryWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Row(
@@ -37,9 +43,10 @@ class LogEntryWidget extends StatelessWidget {
                 radius: 18.0,
                 backgroundColor: Theme.of(context).primaryColor,
                 child: Text(
-                  '4',
+                  '$index',
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Theme.of(context).secondaryHeaderColor,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(
@@ -47,11 +54,15 @@ class LogEntryWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Worked on debugging a database issue in the production environment...',
+                      logEntry.summary,
+                      maxLines: 3,
                       style: Theme.of(context).textTheme.bodyMedium,
                       softWrap: true,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 16.0),
                     Row(
@@ -61,7 +72,7 @@ class LogEntryWidget extends StatelessWidget {
                           size: 16.0,
                         ),
                         Text(
-                          '8:30 AM',
+                          timeToReadable(logEntry.timeIn),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         const SizedBox(
@@ -75,13 +86,15 @@ class LogEntryWidget extends StatelessWidget {
                           size: 16.0,
                         ),
                         Text(
-                          '5:30 PM',
+                          logEntry.timeOut == null
+                              ? ''
+                              : timeToReadable(logEntry.timeOut!),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         // date in the end
                         const Spacer(),
                         Text(
-                          'April 6, 2023',
+                          dateToReadable(logEntry.timeIn),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],

@@ -9,6 +9,7 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       drawer: SizedBox(
         width: MediaQuery.of(context).size.width * 0.5,
         child: Drawer(
@@ -90,7 +91,7 @@ class HomeLayout extends StatelessWidget {
                 title: Text('Settings',
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
-                  // Handle item 1 press
+                  context.pushNamed('Settings');
                 },
               ),
             ],
@@ -124,7 +125,6 @@ class HomeLayout extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: const Color(0xFFF2F2F2),
       body: SafeArea(child: child),
       floatingActionButton: FloatingActionButton(
         heroTag: 'create-log-entry',

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inturnship/providers/profile_provider.dart';
 import 'package:inturnship/widgets/dropdown_select.dart';
 import 'package:inturnship/widgets/form_input.dart';
 import 'package:inturnship/widgets/primary_button.dart';
+import 'package:provider/provider.dart';
 
 class HoursPerDay {
   final int hours;
@@ -159,9 +161,29 @@ class _TimePeriodFormState extends State<TimePeriodForm> {
               child: PrimaryButton(
                 textLabel: 'Ok Cool',
                 icon: const Icon(Icons.arrow_forward),
-                onPressed: () {
+                onPressed: () async {
                   if (_formTimePeriodKey.currentState!.validate()) {
-                    context.goNamed('HomeScreen');
+                    final profileProvider = context.read<ProfileProvider>();
+
+                    profileProvider.setTimePeriod(
+                      totalHours: int.parse(_textTotalHoursController.text),
+                      hoursPerDay: selectedValue!.hours,
+                    );
+
+                    var res = await profileProvider.saveProfile();
+                    if (context.mounted) {
+                      if (res >= 0) {
+                        context.go('/home-screen');
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Something went wrong, please try again',
+                            ),
+                          ),
+                        );
+                      }
+                    }
                   }
                 },
               ),

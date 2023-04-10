@@ -27,7 +27,7 @@ class DropdownSelect<T> extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium),
         const SizedBox(height: 8.0),
         DropdownButtonFormField<T>(
-          isDense: true,
+          isExpanded: true,
           style: Theme.of(context).textTheme.bodyMedium,
           value: selectedValue,
           onChanged: onChanged,
@@ -37,7 +37,9 @@ class DropdownSelect<T> extends StatelessWidget {
               value: item,
               child: Text(
                 item.toString(),
+                softWrap: true,
                 style: Theme.of(context).textTheme.bodyMedium,
+                overflow: TextOverflow.ellipsis,
               ),
             );
           }).toList(),

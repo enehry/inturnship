@@ -7,8 +7,13 @@ const textSecondaryColor = Color(0xFF8D95A6);
 
 ThemeData lightTheme = ThemeData.light().copyWith(
   primaryColor: const Color(0xFF9794F2),
+  scaffoldBackgroundColor: const Color(0xFFF2F2F2),
+  cardColor: Colors.white,
   colorScheme: const ColorScheme.light(
     primary: Color(0xFF9794F2),
+  ),
+  iconTheme: const IconThemeData(
+    color: textColor,
   ),
   primaryColorLight: textColor,
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -106,7 +111,7 @@ ThemeData lightTheme = ThemeData.light().copyWith(
     ),
     titleSmall: TextStyle(
       fontFamily: fontFamily,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontSize: 14,
       color: textSecondaryColor,
     ),
@@ -125,10 +130,19 @@ ThemeData lightTheme = ThemeData.light().copyWith(
   ),
 );
 
+const darkModeTextColor = Color.fromARGB(139, 229, 229, 229);
+const darkModeTextSecondaryColor = Color.fromARGB(71, 255, 255, 255);
+
 ThemeData darkTheme = ThemeData.dark().copyWith(
+  cardColor: Colors.grey[800],
+  iconTheme: const IconThemeData(
+    color: darkModeTextColor,
+  ),
+  secondaryHeaderColor: darkModeTextColor,
+  // primaryColorLight: darkModeTextSecondaryColor,
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF565659),
+      backgroundColor: const Color.fromARGB(255, 41, 41, 41),
       textStyle: const TextStyle(
         fontFamily: fontFamily,
         fontSize: 14,
@@ -149,25 +163,49 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
       fontSize: 14,
-      color: Color(0xFF8D95A6),
+      color: darkModeTextColor,
+    ),
+    bodySmall: TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w500,
+      fontSize: 12,
+      color: darkModeTextColor,
     ),
     headlineLarge: TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w700,
       fontSize: 36,
-      color: Color(0xFF8D95A6),
+      color: darkModeTextColor,
     ),
     headlineMedium: TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
       fontSize: 32,
-      color: Color(0xFF8D95A6),
+      color: darkModeTextColor,
     ),
     headlineSmall: TextStyle(
       fontFamily: fontFamily,
       fontWeight: FontWeight.w500,
       fontSize: 16,
+      color: darkModeTextColor,
+    ),
+    titleSmall: TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: darkModeTextSecondaryColor,
+    ),
+    titleMedium: TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.w500,
+      fontSize: 20,
       color: Color(0xFF8D95A6),
+    ),
+    titleLarge: TextStyle(
+      fontFamily: fontFamily,
+      fontWeight: FontWeight.bold,
+      fontSize: 24,
+      color: darkModeTextColor,
     ),
   ),
 );
