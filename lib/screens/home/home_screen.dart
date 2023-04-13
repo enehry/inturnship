@@ -159,9 +159,15 @@ class HomeScreen extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return LogEntryWidget(
-                      logEntry: snapshot.data![index],
-                      index: snapshot.data!.length - index,
-                    );
+                        logEntry: snapshot.data![index],
+                        index: snapshot.data!.length - index,
+                        deleteLogEntry: (value) {
+                          if (value != null) {
+                            context
+                                .read<LogEntryProvider>()
+                                .deleteLogEntry(id: value);
+                          }
+                        });
                   },
                 )
               ],
