@@ -6,6 +6,7 @@ import 'package:inturnship/screens/log_detail/create_log_entry.dart';
 import 'package:inturnship/screens/onboarding/initial_onboarding.dart';
 import 'package:inturnship/screens/onboarding/registration_onboarding.dart';
 import 'package:inturnship/screens/onboarding/time_period_onboarding.dart';
+import 'package:inturnship/screens/profile/profile_screen.dart';
 import 'package:inturnship/screens/settings/settings.dart';
 
 class AppRouter {
@@ -74,6 +75,12 @@ class AppRouter {
           name: 'Settings',
           pageBuilder: (context, state) => const MaterialPage<void>(
               key: ValueKey('Settings'), child: Settings()),
+        ),
+        GoRoute(
+          path: '/profile-screen',
+          name: 'ProfileScreen',
+          pageBuilder: (context, state) => const MaterialPage<void>(
+              key: ValueKey('ProfileScreen'), child: ProfileScreen()),
         ),
       ],
     );

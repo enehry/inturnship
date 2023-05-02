@@ -47,6 +47,7 @@ class HomeLayout extends StatelessWidget {
                     const SizedBox(height: 8.0),
                     Text(
                       'Nehry Dedoro',
+                      // context.read<ProfileProvider>().getProfile().toString(),
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             color: Colors.white,
                           ),
@@ -78,7 +79,7 @@ class HomeLayout extends StatelessWidget {
                 title: Text('Profile',
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
-                  // Handle item 1 press
+                  context.pushNamed('ProfileScreen');
                 },
               ),
               ListTile(
