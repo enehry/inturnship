@@ -17,33 +17,40 @@ class Settings extends StatelessWidget {
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: 16.0),
-        Row(
-          children: [
-            const Icon(Icons.light_mode_outlined),
-            const SizedBox(width: 16.0),
-            Flexible(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Theme',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 4.0),
-                  Text(
-                    'Let you choose a theme between dark and light mode',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12.0,
-                        ),
-                  ),
-                ],
+        Container(
+          padding: const EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: Theme.of(context).cardColor,
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.light_mode_outlined),
+              const SizedBox(width: 16.0),
+              Flexible(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Theme',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(
+                      'Let you choose a theme between dark and light mode',
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12.0,
+                          ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: 16.0),
-            const ThemeSwitch(),
-          ],
+              const SizedBox(width: 16.0),
+              const ThemeSwitch(),
+            ],
+          ),
         ),
       ],
     ));

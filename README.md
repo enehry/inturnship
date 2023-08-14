@@ -4,13 +4,34 @@ Your personal logbook for internship success
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project was built using Flutter and Dart. The storage used was Hive. The project aims to help students keep track of their internship progress and help them in their journey to become a better professional.
 
-A few resources to get you started if this is your first Flutter project:
+### Sample Image
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img
+  src="https://github.com/enehry/inturnship/blob/main/assets/Inturnship.jpg"
+  alt="Inturnship Image"
+  title="Inturnship"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
+### Prerequisites
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter SDK
+- Android Studio
+- Vscode
+
+### Installing
+
+1. Clone the repository
+
+```
+git clone
+```
+
+2. Open the project in Android Studio/Vscode
+3. Open terminal and install dependencies
+
+```
+flutter pub get
+```
+
+4. Run the app

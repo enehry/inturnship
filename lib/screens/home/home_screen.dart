@@ -153,6 +153,40 @@ class HomeScreen extends StatelessWidget {
                 Text('Recent Logs',
                     style: Theme.of(context).textTheme.titleSmall),
                 const SizedBox(height: 16.0),
+                // if not data show a message
+                if (snapshot.data!.isEmpty)
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 28.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.info_outline_rounded,
+                            size: 20.0,
+                            color:
+                                Theme.of(context).textTheme.bodyMedium!.color,
+                          ),
+                          const SizedBox(width: 10.0),
+                          Text(
+                            'No logs yet',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16.0),
+                      Text(
+                        'You can add a new log by clicking the button below',
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12.0,
+                            ),
+                      ),
+                    ],
+                  ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
