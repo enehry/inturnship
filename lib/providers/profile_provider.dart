@@ -36,6 +36,11 @@ class ProfileProvider extends ChangeNotifier {
     return _currentProfile != null;
   }
 
+  Future<Profile?> getProfile() async {
+    _currentProfile = await _profileService.getProfile();
+    return _currentProfile;
+  }
+
   int get totalHours => currentProfile?.hte.totalHours ?? 0;
   int get hoursPerDay => currentProfile?.hte.hoursPerDay ?? 0;
 
